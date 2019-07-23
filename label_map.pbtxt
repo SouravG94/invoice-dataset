@@ -1,16 +1,8 @@
 item {
-		id:1
-		name: 'logo'
+  name: "paragraph"
+  id: 1
 }
 item {
-		id:2
-		name: 'paragraph'
-}
-item {
-		id:1
-		name: 'table'
-}
-item {
-		id:1
-		name: 'footer'
+  name: "table"
+  id: 2
 }
