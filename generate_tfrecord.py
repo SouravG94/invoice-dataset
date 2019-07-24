@@ -22,21 +22,17 @@ from collections import namedtuple, OrderedDict
 
 flags = tf.app.flags
 flags.DEFINE_string('csv_input', '', 'data/invoice_labels_train.csv')
-flags.DEFINE_string('output_path', '', 'training/train.record')
+flags.DEFINE_string('output_path', '', 'data/train.record')
 flags.DEFINE_string('image_dir', '', 'images/train')
 FLAGS = flags.FLAGS
 
 
 # TO-DO replace this with label map
 def class_text_to_int(row_label):
-    if row_label == 'logo':
+    if row_label == 'paragraph':
         return 1
-    elif row_label == 'paragraph':
-        return 2
     elif row_label == 'table':
-        return 3
-    elif row_label == 'footer':
-        return 4
+        return 2
     else:
         None
 
@@ -81,7 +77,7 @@ def create_tf_example(group, path):
         'image/format': dataset_util.bytes_feature(image_format),
         'image/object/bbox/xmin': dataset_util.float_list_feature(xmins),
         'image/object/bbox/xmax': dataset_util.float_list_feature(xmaxs),
-        'image/object/bbox/ymin': dataset_util.float_list_feature(ymins),
+        'image/object/bbox/zl': dataset_util.float_list_feature(ymins),
         'image/object/bbox/ymax': dataset_util.float_list_feature(ymaxs),
         'image/object/class/text': dataset_util.bytes_list_feature(classes_text),
         'image/object/class/label': dataset_util.int64_list_feature(classes),
